@@ -46,9 +46,16 @@ namespace LoginMVC.Controllers
                 User user = new User();
 
                 user.Username = model.Username;
-                user.Pword = model.Password;
 
-                dal.CreateUser(user);
+                User userRegistered = dal.GetUserLogin(user.Username, model.Password);
+
+                if(userRegistered != null)
+                {
+                    ModelState.AddModelError("", "This user already exists");
+                    return View(model);
+                }
+
+                dal.CreateUser(user, model.Password);
 
                 User validationUser = dal.GetUserLogin(model.Username, model.Password);
 

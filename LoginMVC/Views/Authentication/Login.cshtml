@@ -1,6 +1,10 @@
 ﻿@using LoginMVC.Models.ViewModels
 @model LoginViewModel
 
+@{
+    ViewData["Title"] = "Log in";
+}
+
 <form asp-action="Login" method="post" asp-antiforgery="true">
     <div class="form-group">
         <label asp-for="Username"></label>
@@ -17,4 +21,6 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <button type="submit" class="btn btn-primary">Login</button>
+
+    <a asp-controller="Authentication" asp-action="SignUp" class="btn btn-secondary ml-2">Sing Up</a>
 </form>
